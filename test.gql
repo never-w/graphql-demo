@@ -1,0 +1,247 @@
+query PageOutOrder($page: Page, $pageOutOrderInput: PageOutOrderInput) {
+  pageOutOrder(page: $page, pageOutOrderInput: $pageOutOrderInput) {
+    pageCurrent
+    pageSize
+    records {
+      belongOrg {
+        orgId
+        orgName
+      }
+      commodityList {
+        basketCustomerId
+        basketCustomerName
+        basketQuantity
+        batchCode
+        batchId
+        belongCustomerId
+        belongCustomerName
+        commodityBomId
+        commodityId
+        commodityName
+        commoditySkuId
+        commoditySpecOptionId
+        commodityStatus
+        completeOutStock
+        conversion
+        createBy
+        createTime
+        damageReason
+        deleted
+        inBoundTotalQuantity
+        inBoundUnitQuantity
+        maxQuantity
+        outOrderId
+        outOrderItemId
+        outStockFinishTotalQuantity
+        outStockFinishUnitQuantity
+        photos
+        pickingTotalQuantity
+        pickingUnitQuantity
+        planQuantity
+        productPickingQuantity {
+          totalQuantity
+          unitQuantity
+        }
+        realQuantity
+        salePrice
+        salePriceType
+        salePriceTypeName
+        saleTotalPrice
+        skuTextDescription
+        stockQuantity {
+          totalQuantity
+          unitQuantity
+        }
+        stockTotalPrice
+        stockUnitPrice
+        stockUnitPriceType
+        stockUnitPriceTypeName
+        totalQuantity
+        totalType
+        totalTypeName
+        unitQuantity
+        unitStockQuantity
+        unitTotalPrice
+        unitType
+        unitTypeName
+        updateBy
+        updateTime
+        waitTotalQuantity
+        waitUnitQuantity
+      }
+      commodityTypeId
+      commodityTypeName
+      createTime
+      createUserName
+      createUserPhone
+      customerDistributionId
+      customerDistributionName
+      customerId
+      customerName
+      customerType
+      customerTypeName
+      deliveryFee
+      errorDescription
+      inOrderCode
+      inOrderId
+      isExceptional
+      netWeightExceptionRatio
+      organizationId
+      organizationName
+      outOrderCode
+      outOrderDescription
+      outOrderId
+      outOrderStatus
+      outOrderStatusName
+      outOrderType
+      outOrderTypeName
+      payMethod
+      payMethodDesc
+      saleIncomeOrder {
+        commoditiesList {
+          batchCode
+          batchId
+          commodityName
+          commoditySku {
+            categoryId
+            categoryName
+            commodityId
+            commodityName
+            commoditySkuId
+            commoditySkuName
+            commoditySpecOptionId
+            commoditySpecOptionName
+            conversion
+          }
+          goodsTotalQuantity
+          goodsUnitQuantity
+          incomeId
+          incomeItemId
+          outOrderItemId
+          photosList
+          priceType {
+            unitId
+            unitName
+          }
+          remark
+          saleMoney
+          salePrice
+          totalQuantity
+          totalSalePrice
+          totalType {
+            unitId
+            unitName
+          }
+          unitQuantity
+          unitType {
+            unitId
+            unitName
+          }
+        }
+        commodityTypeName
+        createTime
+        customer {
+          customerId
+          customerName
+          customerType
+        }
+        functionalField {
+          saleTotalCost
+          saleTotalPrice
+        }
+        incomeCode
+        incomeId
+        incomeStatus
+        incomeStatusName
+        logs {
+          createTime
+          incomeId
+          incomeLogId
+          remark
+          type
+          typeText
+        }
+        originalSaleCommodityPayload {
+          actualQuantity {
+            actualSalePrice
+            actualSaleTotalPrice
+            actualTotalQuantity
+            actualUnitQuantity
+            outOrderItemId
+          }
+          batchCode
+          batchId
+          outOrderId
+          outOrderItemId
+          salePrice
+          salePriceType {
+            unitId
+            unitName
+          }
+          saleTotalPrice
+          totalQuantity
+          unitQuantity
+        }
+        payMode
+        rejectReason
+        remark
+        saleCostOrderId
+        saleCostOrderItems {
+          commodity {
+            categoryId
+            categoryName
+            commodityId
+            commodityName
+            commoditySkuId
+            commoditySkuName
+            commoditySpecOptionId
+            commoditySpecOptionName
+            conversion
+          }
+          materialFee
+          outOrderItemId
+          packagingFee
+          saleCostOrderId
+          saleCostOrderItemId
+        }
+        saleTime
+        sourceId
+        sourceType
+        sourceTypeName
+        totalAmount
+        user {
+          phoneNum
+          userId
+          userName
+        }
+        warehouse {
+          warehouseId
+          warehouseName
+        }
+      }
+      saleOrderInfo {
+        outOrderId
+        saleOrderCode
+        saleOrderId
+      }
+      saleTime
+      supplierId
+      supplierName
+      targetBelongOrg {
+        orgId
+        orgName
+      }
+      taskCode
+      taskId
+      totalPrice
+      transferId
+      transferOrganizationId
+      transferOrganizationName
+      transferType
+      userId
+      warehouseId
+      warehouseName
+    }
+    totalRecords
+  }
+}
