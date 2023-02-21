@@ -2,7 +2,7 @@ import { ApolloServer } from "@apollo/server"
 import { startStandaloneServer } from "@apollo/server/standalone"
 import { makeExecutableSchema } from "@graphql-tools/schema"
 import { mapSchema, getDirective, MapperKind } from "@graphql-tools/utils"
-import { defaultFieldResolver } from "graphql"
+import { defaultFieldResolver, printSchema, buildClientSchema, getIntrospectionQuery } from "graphql"
 
 // Our GraphQL schema
 const typeDefs = `#graphql
@@ -21,13 +21,14 @@ const typeDefs = `#graphql
   """
   值
   """
-  value: String
+  value: String ! @upper
 }
 
   type Query {
     deliveryBillType: [StringOption]
     hello: A
-    oldField: String @deprecated(reason: "Use1111111")
+    oldField: String
+    _schema: String
   }
 `
 
@@ -37,6 +38,7 @@ const resolvers = {
     hello() {
       return "Hello World!"
     },
+    _schema: () => typeDefs,
   },
 }
 
@@ -78,8 +80,21 @@ let schema = makeExecutableSchema({
 // Transform the schema by applying directive logic
 schema = upperDirectiveTransformer(schema, "upper")
 
-const server = new ApolloServer({ schema })
+const server = new ApolloServer({ schema, introspection: true })
 
 const { url } = await startStandaloneServer(server, { listen: { port: 4000 } })
+await server.executeOperation({ query: getIntrospectionQuery() })
 
 console.log(`🚀 Server listening at: ${url}`)
+
+// async function aa() {
+//   const { data } = await server.executeOperation({ query: getIntrospectionQuery() })
+//   const schema1 = buildClientSchema(data)
+
+//   console.log(printSchema(schema1), "===")
+// }
+// aa()
+
+// server.executeOperation({ query: getIntrospectionQuery() }).then((res) => {
+//   console.log(printSchema(buildClientSchema(res.body.singleResult.data)))
+// })
