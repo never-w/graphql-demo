@@ -3,14 +3,21 @@ var { graphqlHTTP } = require("express-graphql")
 var { buildSchema } = require("graphql")
 
 // Construct a schema, using GraphQL schema language
-var schema = buildSchema(`
+var schema = buildSchema(`#graphql 
+directive @upper on FIELD_DEFINITION
+
   type RandomDie {
-    numSides: Int!
+    numSides: Int! @upper
     rollOnce: Int!
     roll(numRolls: Int!): [Int]
    }
 
+  type _Service {
+    sdl: String!
+   }
+
   type Query {
+    _service: _Service!
     quoteOfTheDay: String
     random: Float!
     getDie(numSides: Int): RandomDie
@@ -65,8 +72,8 @@ app.use(
     graphiql: true,
   })
 )
-app.listen(4000, () => {
-  console.log("Running a GraphQL API server at http://localhost:4000/graphql")
+app.listen(5000, () => {
+  console.log("Running a GraphQL API server at http://localhost:5000/graphql")
 })
 
 // TODO:下面注释的代码是  客户端请求代码
