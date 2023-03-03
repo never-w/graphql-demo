@@ -6,12 +6,12 @@ directive @lower(
   reason: String = "No longer supported"
 ) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE
 
-directive @upper(
+directive @fetchField(
   reason: String = "No longer supported"
 ) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | ENUM_VALUE
 
 interface Book {
-  title: String! @upper
+  title: String! @fetchField
   author: String!
 }
 
@@ -32,13 +32,34 @@ input Input {
   age: String 
 }
 
-type A {
-   num: Int @upper(reason: "wwwwwwwwwwwwwwwwwwww") 
+
+interface HH {
+  g: Int 
+}
+
+interface CreateByBase implements HH{
+  f: String @fetchField
+  b: Int
+  g: Int @fetchField
+}
+
+type A implements CreateByBase & HH {
+   num: Int @fetchField   
+   text: String 
+   f: String
+   b: Int
+   g: Int
+}
+
+enum B {
+   STR,
+   CODE  
 }
 
 type ReturnType {
-   class: String @upper(reason: "wwwwwwwwwwwwwwwwwwww")
-   numType: A
+   class: String 
+   numType: A @fetchField  
+   textEnum: B   
 }
 
 type Sdl {
@@ -47,7 +68,7 @@ type Sdl {
 
 type Query {
 # , age: Input!
-  search(contains: String @upper): ReturnType 
+  search(contains: String @fetchField): ReturnType 
  # books: [Book!]!
   _service: Sdl,
 }
